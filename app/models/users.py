@@ -12,12 +12,7 @@ from app.utils.validators import normalize_email
 class User(db.Model, BaseModel):
     __tablename__ = "users"
 
-    # SQLite only autoincrements INTEGER PKs; keep BIGINT on MySQL/Postgres.
-    id = db.Column(
-        db.BigInteger().with_variant(db.Integer, "sqlite"),
-        primary_key=True,
-        autoincrement=True,
-    )
+    id = db.Column(db.BigInteger, primary_key=True)
     uuid = db.Column(db.String(36), unique=True, nullable=False, default=lambda: str(uuid.uuid4()))
 
     # Profile fields

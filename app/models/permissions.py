@@ -5,12 +5,7 @@ from app.models.base import BaseModel
 class Permission(db.Model, BaseModel):
     __tablename__ = "permissions"
 
-    # SQLite only autoincrements INTEGER PKs; keep BIGINT on MySQL/Postgres.
-    id = db.Column(
-        db.BigInteger().with_variant(db.Integer, "sqlite"),
-        primary_key=True,
-        autoincrement=True,
-    )
+    id = db.Column(db.BigInteger, primary_key=True)
     code = db.Column(db.String(100), unique=True, nullable=False, index=True)
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=True)
